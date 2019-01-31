@@ -1,0 +1,95 @@
+import { Head } from 'mdx-deck'
+import { Appear } from 'mdx-deck'
+
+export { default as theme } from './theme'
+
+<Head>
+  <title>Mapped types sorcery</title>
+</Head>
+
+# Map types sorcery
+<a href="https://github.com/paszkowskiDamian">Damian Paszkowski</a>
+
+---
+
+## Agenda
+
+- Basics of mapped types
+- Mapped types & conditional types
+- Typesafe API 
+- What's next
+
+
+```notes
+- First of all 
+```
+
+---
+## Basic
+<iframe src="https://codesandbox.io/embed/xz9kr5j1l4?hidenavigation=1&?module=%2Fbasic.ts&view=editor&hidenavigation=1&moduleview=1&fontsize=24" style={{width: 1200, height: 600}} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+```notes
+When do we use mapped types? We use it whenever we need to transform one type to another.
+In this exampele you can see how APIResponse can be transformed from a type that has some fields optional to type where this optionality can be removed.
+As can you see we are getting some type then we are iterating over all keys of it, removing optional modifier and assigining exactly the same type to key as it was originaly.
+```
+
+---
+## Soming more interesting
+<iframe src="https://codesandbox.io/embed/xz9kr5j1l4?hidenavigation=1&module=%2FmappedTypes.ts&view=editor&hidenavigation=1&moduleview=1&fontsize=24" style={{width: 1200, height: 600}} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+```notes
+Lets imagine that we needa an object where we will map action type to the coresponding handler.
+In this case we are using a union on action types to get UserHandlers type
+In the test we can see that typescript will coretly infer the type of action that each handler will hanlde. 
+```
+
+---
+## Real life example
+<iframe src="https://codesandbox.io/embed/xz9kr5j1l4?hidenavigation=1&module=%2FreactList.tsx&view=editor&hidenavigation=1&moduleview=1&fontsize=24" style={{width: 1200, height: 600}} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+```notes
+Lets look how maped types can help us with real word example. This is generic list component. 
+As we all know when rendering a list of components in React we need to provide a key. In my opinion we shouldn't assume that elements that we are iterating 
+over have key or any known property name.
+Thats why again we will use mapped types here. 
+```
+
+---
+## With conditional types
+
+<iframe src="https://codesandbox.io/embed/xz9kr5j1l4?hidenavigation=1&module=%2FconditionalTypes.ts&view=editor&hidenavigation=1&moduleview=1&fontsize=24" style={{width: 1200, height: 600}} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+```notes
+In TypeScript 2.8 conditional types were introduced. It has created a new posibiilities to define types. This simple example shows how to 
+filter only arrays from some type.
+Pick is already build in type that will pick defined keys from some types. 
+```
+
+---
+## Typed API
+
+<iframe src="https://codesandbox.io/embed/xz9kr5j1l4?hidenavigation=1&module=%2FtypeTransformations.ts&view=editor&hidenavigation=1&moduleview=1&fontsize=24" style={{width: 1200, height: 600}} sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+```notes
+Lets look into soming that is the main topic of the presentation. I'll show you short example how to use maped types to create simple typed api. 
+Then I'll proceed to something more rebust.
+```
+
+---
+
+## Production version
+
+How it improved our workflow
+
+---
+
+## Future
+
+<ul>
+  <Appear>
+    <li>npm package</li>
+    <li>swagger to type-safe-api</li>
+    <li>remove dependency on axios</li>
+  </Appear>
+</ul>
